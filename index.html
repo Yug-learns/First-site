@@ -2,478 +2,1072 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Yug Desai – Resume</title>
+  <title>Yug Desai – Food Technologist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Icons from Lucide (CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
   <style>
     :root {
-      --bg: #050505;
-      --card: #111111;
-      --card-soft: #161616;
-      --text: #f5f5f5;
-      --muted: #9c9c9c;
-      --accent: #f5b400;
-      --accent-soft: rgba(245, 180, 0, 0.16);
-      --radius-lg: 22px;
-      --radius-md: 18px;
-      --radius-pill: 999px;
+      --bg: #FAFAF8;
+      --dark: #1A1A1A;
+      --primary: #1B4332;
+      --primary-soft: #74A893;
+      --accent: #D4A373;
+      --text: #4B5563;
+      --radius-xl: 1.25rem;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1b1b1b 0, #050505 52%);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
     }
+    a { color: inherit; text-decoration: none; }
 
-    img { display: block; max-width: 100%; }
-
-    .page {
-      min-height: 100vh;
-      max-width: 1100px;
+    .container {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 2.2rem 1.4rem 3rem;
+      padding: 0 1.5rem;
     }
 
-    @media (min-width: 900px) {
-      .page {
-        padding: 3rem 0 3.6rem;
-      }
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(250, 250, 248, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
     }
-
-    .grid {
-      display: grid;
-      gap: 1.8rem;
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
     }
-
-    @media (min-width: 900px) {
-      .grid {
-        grid-template-columns: 0.95fr 1.35fr;
-        align-items: flex-start;
-      }
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: var(--radius-md);
-      padding: 1.1rem 1.2rem;
-      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.75);
-      border: 1px solid #1b1b1b;
-    }
-
-    .card-soft {
-      background: var(--card-soft);
-    }
-
-    .hero {
-      display: grid;
-      gap: 1.3rem;
-    }
-
-    .avatar-card {
-      padding: 1.5rem 1.5rem 1.3rem;
-      text-align: center;
-    }
-
-    .avatar-wrap {
-      width: 170px;
-      height: 170px;
-      margin: 0 auto 1rem;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      background: #222;
-    }
-
-    .avatar-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .name {
-      font-size: 1.42rem;
-      font-weight: 600;
-    }
-
-    .role {
-      margin-top: 0.18rem;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .badge-pill {
-      display: inline-flex;
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.35rem 0.9rem;
-      border-radius: var(--radius-pill);
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.72rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      margin-top: 0.7rem;
+      letter-spacing: 0.08em;
+    }
+    .nav-links a {
+      color: rgba(15,23,42,0.7);
+    }
+    .nav-links a:hover {
+      color: var(--primary);
     }
 
-    .intro-card {
-      padding: 1.4rem 1.6rem;
+    /* Sections */
+    section {
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .section-kicker {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--primary-soft);
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 0.75rem;
+      color: var(--dark);
+    }
+    .section-underline {
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 999px;
+      margin: 1rem auto 0;
     }
 
-    .intro-text {
-      font-size: 0.98rem;
-      line-height: 1.7;
+    /* Hero / About (simple combined section) */
+    #about .grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      #about .grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+    }
+    .about-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(116, 168, 147, 0.12);
+      color: var(--primary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+    .about-text {
+      margin-top: 1rem;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.75rem;
+      font-size: 0.85rem;
+    }
+    .about-item-title {
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.25rem;
+    }
+    .about-item-value {
       color: var(--text);
     }
 
-    .pill-row {
+    /* Skills */
+    #skills {
+      background: #FAFAF8;
+    }
+    .skills-grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+    @media (min-width: 768px) {
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .skill-card {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      transition: box-shadow 0.2s ease;
+    }
+    .skill-card:hover {
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+    .skill-header {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin-top: 1.1rem;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 1rem;
+      background: rgba(27, 67, 50, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+    .skill-name-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+      font-size: 0.9rem;
+    }
+    .skill-name-row span:first-child {
+      font-weight: 500;
+      color: #374151;
+    }
+    .skill-name-row span:last-child {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary-soft);
+    }
+    .skill-bar-bg {
+      height: 10px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #1B4332 0%, #74A893 100%);
+      width: 0;
+      transition: width 1s ease-out;
     }
 
-    .pill {
-      padding: 0.35rem 0.9rem;
-      border-radius: var(--radius-pill);
-      background: #181818;
-      font-size: 0.78rem;
-      color: var(--muted);
+    .competencies {
+      margin-top: 3rem;
+    }
+    .competency-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .competency-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #fff;
+      padding: 0.7rem 1.1rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
+      font-size: 0.85rem;
+      color: #374151;
+    }
+
+    /* Education */
+    #education { background: #fff; }
+    .edu-layout {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .edu-layout { grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr); }
+    }
+    .timeline-wrap {
+      position: relative;
+      padding-left: 1.75rem;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #1B4332, #74A893, #D4A373);
+    }
+    .edu-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .edu-dot {
+      position: absolute;
+      left: -1px;
+      top: 0.35rem;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #fff;
+      border: 4px solid #1B4332;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1B4332;
+    }
+    .edu-card {
+      background: #FAFAF8;
+      border-radius: 1rem;
+      padding: 1.25rem 1.25rem 1.1rem;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+    }
+    .edu-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+      align-items: flex-start;
+    }
+    .edu-pill {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(116, 168, 147, 0.12);
+      color: var(--primary-soft);
     }
-
-    .pill label {
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-right: 0.35rem;
-    }
-
-    .pill span {
-      font-size: 0.8rem;
-      color: var(--text);
-    }
-
-    .section-title {
-      font-size: 0.9rem;
+    .edu-degree {
       font-weight: 600;
-      margin-bottom: 0.7rem;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+    .edu-location {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-bottom: 0.35rem;
+    }
+    .edu-desc {
+      font-size: 0.78rem;
+      color: #6b7280;
     }
 
-    .section-sub {
-      font-size: 0.8rem;
-      color: var(--muted);
+    .cert-card {
+      background: linear-gradient(to bottom right, #1B4332, #2D5A45);
+      color: #fff;
+      border-radius: 1rem;
+      padding: 1rem 1.1rem;
+      font-size: 0.85rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.2);
+    }
+    .cert-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .cert-year {
+      background: rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.78rem;
     }
 
-    .timeline {
+    .achievement-card {
+      margin-top: 1.25rem;
+      background: #FAFAF8;
+      border-radius: 1rem;
+      padding: 1.25rem;
+      border: 1px solid rgba(116, 168, 147, 0.25);
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+    .achievement-head {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+    .achievement-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 1rem;
+      background: rgba(212, 163, 115, 0.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    /* Contact */
+    #contact {
+      background: #FAFAF8;
+    }
+    .contact-layout {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .contact-layout { grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr); }
+    }
+    .contact-blurb {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      background: #fff;
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      font-size: 0.85rem;
+    }
+    .contact-method + .contact-method {
+      margin-top: 0.75rem;
+    }
+    .contact-method-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-label {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-bottom: 0.1rem;
+    }
+    .contact-value {
+      font-weight: 500;
+      color: #111827;
+    }
+    .social-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .social-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 1.4rem;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.10);
+    }
+    .form-row {
       display: grid;
       gap: 1rem;
-      font-size: 0.86rem;
+      margin-bottom: 1rem;
     }
-
-    .timeline-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 1.3rem;
+    @media (min-width: 600px) {
+      .form-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
-
-    .timeline-main {
-      flex: 1;
-    }
-
-    .timeline-role {
-      font-size: 0.98rem;
-      font-weight: 600;
-    }
-
-    .timeline-place {
-      font-size: 0.86rem;
-      color: var(--muted);
-      margin-top: 0.18rem;
-    }
-
-    .timeline-date {
-      font-size: 0.8rem;
-      color: var(--muted);
-      white-space: nowrap;
-      padding: 0.18rem 0.65rem;
-      border-radius: var(--radius-pill);
-      background: #181818;
-      align-self: flex-start;
-    }
-
-    .bullet-list {
-      margin-top: 0.55rem;
-      padding-left: 1.1rem;
-      color: var(--muted);
-    }
-
-    .bullet-list li {
-      margin-bottom: 0.3rem;
-    }
-
-    .label-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.3rem;
-    }
-
-    .label-row span {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    .tool-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.45rem;
-    }
-
-    .tool-chip {
-      padding: 0.3rem 0.7rem;
-      border-radius: var(--radius-pill);
-      background: #181818;
+    label {
       font-size: 0.78rem;
-      color: var(--text);
+      font-weight: 600;
+      color: #4b5563;
+      margin-bottom: 0.25rem;
+      display: block;
     }
-
-    .lang-flag {
-      font-size: 1.1rem;
+    input, textarea {
+      width: 100%;
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.65rem 0.75rem;
+      background: #FAFAF8;
+      font-size: 0.85rem;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      font-family: inherit;
     }
-
-    .footer-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1.2rem;
-      font-size: 0.82rem;
-      color: var(--muted);
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(27, 67, 50, 0.25);
     }
-
-    .link-pill {
+    textarea {
+      resize: none;
+      min-height: 130px;
+    }
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.9rem 1.3rem;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 500;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-pill);
-      background: #181818;
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-decoration: none;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+    }
+    .btn:hover {
+      background: #2D5A45;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.30);
+      transform: translateY(-1px);
+    }
+    .btn[disabled] {
+      opacity: 0.6;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .send-confirm {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.95rem;
+      color: #4b5563;
     }
 
-    .link-pill:hover {
-      color: var(--text);
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: #fff;
+      margin-top: 4rem;
+    }
+    .footer-main {
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 3rem 0;
+    }
+    .footer-grid {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+    }
+    .footer-nav a { color: rgba(255,255,255,0.75); }
+    .footer-nav a:hover { color: #fff; }
+    .back-top-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: none;
+      color: #fff;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .back-top-btn:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-1px);
+    }
+    .footer-bottom {
+      padding: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+    }
+    @media (min-width: 768px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <div class="grid">
-      <!-- LEFT COLUMN -->
-      <section class="hero">
-        <!-- Avatar / basic info -->
-        <article class="card avatar-card">
-          <div class="avatar-wrap">
-            <!-- TODO: replace src with your own image URL -->
-            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
-                 alt="Portrait of Yug Desai" />
-          </div>
-          <h1 class="name">Yug Desai</h1>
-          <p class="role">Student · Food Technology</p>
-          <div class="badge-pill">Open to work · Fulda</div>
-        </article>
 
-        <!-- Contact & quick details -->
-        <article class="card card-soft">
-          <div class="section-title">Details</div>
-          <div class="timeline" style="margin-top:0.6rem;">
-            <div class="timeline-item">
-              <div class="timeline-main">
-                <div class="section-sub">Phone</div>
-                <div>+49 1551 0587217</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-main">
-                <div class="section-sub">Email</div>
-                <div>work@yugdesai.in</div>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-main">
-                <div class="section-sub">Location</div>
-                <div>Wiesenmühlenstr. 3, 36037 Fulda, Germany</div>
-              </div>
-            </div>
-          </div>
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <div class="logo-mark">YD</div>
+        <div>
+          <div style="font-weight:600;font-size:0.95rem;">Yug Desai</div>
+          <div style="font-size:0.78rem;color:#6b7280;">Food Technologist</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-          <div style="margin-top:1rem;">
-            <div class="section-sub">Languages</div>
-            <div class="tool-chips" style="margin-top:0.4rem;">
-              <div class="tool-chip">
-                <span class="lang-flag">🇬🇧</span> English · C1
-              </div>
-              <div class="tool-chip">
-                <span class="lang-flag">🇩🇪</span> German · B2
-              </div>
-            </div>
-          </div>
-        </article>
+  <!-- About / Hero -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:2.5rem;">
+        <span class="section-kicker">Profile</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-underline"></div>
+      </div>
 
-        <!-- Skills -->
-        <article class="card card-soft">
-          <div class="section-title">Skills</div>
-          <ul class="bullet-list">
-            <li>Customer service and positive relationship building.</li>
-            <li>Organisation and logistics for tasks and schedules.</li>
-            <li>Clear communication in English and German.</li>
-            <li>Teamwork in diverse, international groups.</li>
-            <li>Adaptability and fast learning in new environments.</li>
-            <li>Strong interest in food technology and quality processes.</li>
-          </ul>
-        </article>
-      </section>
-
-      <!-- RIGHT COLUMN -->
-      <section class="grid" style="gap:1.6rem;">
-        <!-- Intro / interests -->
-        <article class="card intro-card">
-          <p class="intro-text">
-            My name is <strong>Yug Desai</strong>, a motivated Food Technology student in Fulda with a strong
-            interest in the food industry and openness to other job fields. I enjoy learning fast,
-            working in teams and contributing reliably wherever I am needed.
+      <div class="grid">
+        <div class="card">
+          <span class="badge">
+            <span>🧪</span>
+            <span>Food Technology</span>
+          </span>
+          <h1 class="about-title" style="margin-top:1.3rem;">
+            Food Technologist focused on safe, scalable, smart food systems
+          </h1>
+          <p class="about-text">
+            I am a food science professional with experience across food safety, quality
+            control, and product development. I enjoy turning complex technical challenges
+            into practical, consumer‑ready solutions that are safe, efficient, and sustainable.
           </p>
 
-          <div class="pill-row">
-            <div class="pill">
-              <label>Interests</label>
-              <span>Food industry</span>
-              <span>Customer contact</span>
-              <span>Logistics</span>
+          <div class="about-grid">
+            <div>
+              <div class="about-item-title">Current location</div>
+              <div class="about-item-value">Gießen, Hesse, Germany</div>
             </div>
-            <div class="pill">
-              <label>Looking for</label>
-              <span>Flexible part‑time roles</span>
+            <div>
+              <div class="about-item-title">Specialisation</div>
+              <div class="about-item-value">Food Safety & Quality</div>
+            </div>
+            <div>
+              <div class="about-item-title">Experience</div>
+              <div class="about-item-value">Food labs, QA, product work</div>
+            </div>
+            <div>
+              <div class="about-item-title">Languages</div>
+              <div class="about-item-value">English, German (in progress)</div>
             </div>
           </div>
-        </article>
+        </div>
 
-        <!-- Education & goals row -->
-        <div class="grid" style="gap:1.4rem;">
-          <!-- Education -->
-          <article class="card">
-            <div class="section-title">Education</div>
-            <div class="timeline" style="margin-top:0.7rem;">
-              <div class="timeline-item">
-                <div class="timeline-main">
-                  <div class="timeline-role">Bachelor of Food Technology</div>
-                  <div class="timeline-place">Hochschule Fulda · Germany</div>
-                </div>
-                <div class="timeline-date">2024 – present</div>
+        <div class="card" style="background:#1B4332;color:#fff;">
+          <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:0.9rem;">Snapshot</h3>
+          <ul style="list-style:none;font-size:0.9rem;display:grid;gap:0.55rem;">
+            <li>• Hands‑on with lab analysis and micro‑biology tests.</li>
+            <li>• Experience with HACCP, hygiene and documentation.</li>
+            <li>• Comfortable collaborating with production and QA teams.</li>
+            <li>• Curious, structured, and always learning new methods.</li>
+          </ul>
+          <div style="margin-top:1.7rem;height:1px;background:rgba(255,255,255,0.18);"></div>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.8);margin-top:0.9rem;">
+            This page is a simple one‑file website that you can host on GitHub Pages or any static host.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">What I bring</span>
+        <h2 class="section-title">Skills &amp; Expertise</h2>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Technical Skills -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon"><i data-lucide="beaker"></i></div>
+            <h3 style="font-size:1.15rem;font-weight:600;">Technical Skills</h3>
+          </div>
+          <div>
+            <!-- Replace levels as you like -->
+            <div class="skill-name-row">
+              <span>Food Safety &amp; HACCP</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:90;"></div>
+            </div>
+
+            <div class="skill-name-row" style="margin-top:0.9rem;">
+              <span>Quality Control &amp; QA</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:85;"></div>
+            </div>
+
+            <div class="skill-name-row" style="margin-top:0.9rem;">
+              <span>Laboratory Analysis</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:80;"></div>
+            </div>
+
+            <div class="skill-name-row" style="margin-top:0.9rem;">
+              <span>Product Development</span>
+              <span>75%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:75;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="skill-card">
+          <div class="skill-header">
+            <div class="skill-icon"><i data-lucide="users"></i></div>
+            <h3 style="font-size:1.15rem;font-weight:600;">Soft Skills</h3>
+          </div>
+          <div>
+            <div class="skill-name-row">
+              <span>Teamwork &amp; Collaboration</span>
+              <span>90%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:90;"></div>
+            </div>
+
+            <div class="skill-name-row" style="margin-top:0.9rem;">
+              <span>Communication</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:85;"></div>
+            </div>
+
+            <div class="skill-name-row" style="margin-top:0.9rem;">
+              <span>Problem Solving</span>
+              <span>80%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:80;"></div>
+            </div>
+
+            <div class="skill-name-row" style="margin-top:0.9rem;">
+              <span>Adaptability &amp; Learning</span>
+              <span>85%</span>
+            </div>
+            <div class="skill-bar-bg">
+              <div class="skill-bar-fill" style="--level:85;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Competencies -->
+      <div class="competencies">
+        <h3 style="text-align:center;font-size:1.15rem;font-weight:600;">Core Competencies</h3>
+        <div class="competency-list">
+          <div class="competency-pill"><span>🧪</span><span>Food Safety</span></div>
+          <div class="competency-pill"><span>🌿</span><span>Quality Control</span></div>
+          <div class="competency-pill"><span>🔬</span><span>Laboratory Analysis</span></div>
+          <div class="competency-pill"><span>📦</span><span>Product Development</span></div>
+          <div class="competency-pill"><span>📊</span><span>Process Optimization</span></div>
+          <div class="competency-pill"><span>🤝</span><span>Team Leadership</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Academic Background</span>
+        <h2 class="section-title">Education &amp; Certifications</h2>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="edu-layout">
+        <!-- Education timeline -->
+        <div>
+          <h3 style="font-size:1.15rem;font-weight:600;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.45rem;">
+            <i data-lucide="graduation-cap"></i>
+            <span>Education Journey</span>
+          </h3>
+          <div class="timeline-wrap">
+            <div class="timeline-line"></div>
+
+            <!-- Example entries – adjust to your real education -->
+            <div class="edu-item">
+              <div class="edu-dot">
+                <i data-lucide="graduation-cap" style="width:14px;height:14px;"></i>
               </div>
-
-              <div class="timeline-item">
-                <div class="timeline-main">
-                  <div class="timeline-role">Goethe‑Zertifikat B1 & B2</div>
-                  <div class="timeline-place">Goethe‑Institut</div>
-                </div>
-                <div class="timeline-date">2023 – 2024</div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-main">
-                  <div class="timeline-role">Bachelor of Food Technology (Transfer)</div>
-                  <div class="timeline-place">Parul Institute of Technology · India</div>
-                </div>
-                <div class="timeline-date">2022 – 2023</div>
-              </div>
-
-              <div class="timeline-item">
-                <div class="timeline-main">
-                  <div class="timeline-role">Higher Secondary Education</div>
-                  <div class="timeline-place">
-                    The Wisdom Global School · India · Physics, Chemistry, Biology
+              <div class="edu-card">
+                <div class="edu-top">
+                  <h4 style="font-weight:600;">University of Applied Sciences Fulda</h4>
+                  <div class="edu-pill">
+                    <i data-lucide="calendar" style="width:13px;height:13px;"></i>
+                    <span>2024 – Present</span>
                   </div>
                 </div>
+                <p class="edu-degree">Bachlors in Food Technology</p>
+                <div class="edu-location">
+                  <i data-lucide="map-pin" style="width:13px;height:13px;"></i>
+                  <span>Fulda, Germany</span>
+                </div>
+                <p class="edu-desc">
+                  Focus on advanced food safety, product design, and quality management within industrial environments.
+                </p>
               </div>
             </div>
-          </article>
 
-          <!-- Goals -->
-          <article class="card card-soft">
-            <div class="section-title">Goals</div>
-            <p class="section-sub">
-              What Yug is aiming for.
+            <div class="edu-item">
+              <div class="edu-dot">
+                <i data-lucide="graduation-cap" style="width:14px;height:14px;"></i>
+              </div>
+              <div class="edu-card">
+                <div class="edu-top">
+                  <h4 style="font-weight:600;">Goethe institute </h4>
+                  <div class="edu-pill">
+                    <i data-lucide="calendar" style="width:13px;height:13px;"></i>
+                    <span>2023 – 2024</span>
+                  </div>
+                </div>
+                <p class="edu-degree"> Goethe B1 &amp; B2</p>
+                <div class="edu-location">
+                  <i data-lucide="map-pin" style="width:13px;height:13px;"></i>
+                  <span>Location</span>
+                </div>
+                <p class="edu-desc">
+                  Language School.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Certifications + achievement -->
+        <div>
+          <h3 style="font-size:1.15rem;font-weight:600;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.45rem;">
+            <i data-lucide="award"></i>
+            <span>Certifications</span>
+          </h3>
+
+          <div class="cert-card">
+            <div class="cert-top">
+              <div>
+                <h4 style="font-weight:600;">HACCP &amp; Food Safety Certification</h4>
+                <p style="opacity:0.8;">Example Training Provider</p>
+              </div>
+              <span class="cert-year">2024</span>
+            </div>
+          </div>
+
+          <div style="height:0.75rem;"></div>
+
+          <div class="cert-card">
+            <div class="cert-top">
+              <div>
+                <h4 style="font-weight:600;">Quality Management (ISO basics)</h4>
+                <p style="opacity:0.8;">Example Institute</p>
+              </div>
+              <span class="cert-year">2023</span>
+            </div>
+          </div>
+
+          <div class="achievement-card">
+            <div class="achievement-head">
+              <div class="achievement-icon">🌟</div>
+              <div>
+                <h4 style="font-weight:600;color:#111827;">Continuous Learner</h4>
+                <p style="font-size:0.78rem;color:#6b7280;">Always growing</p>
+              </div>
+            </div>
+            <p style="font-size:0.8rem;color:#4b5563;margin-top:0.35rem;">
+              Committed to continuous professional development and staying updated with the latest methods in food technology, safety, and quality assurance.
             </p>
-            <ul class="bullet-list" style="margin-top:0.6rem;">
-              <li>Find flexible part‑time work alongside studies in Fulda.</li>
-              <li>Gain hands‑on experience in the food industry or related areas.</li>
-              <li>Develop customer‑facing and organisational skills further.</li>
-              <li>Contribute to team success through reliability and commitment.</li>
-            </ul>
-          </article>
+          </div>
         </div>
 
-        <!-- Tools / extras row (adapted from “design tools” area in template) -->
-        <div class="grid" style="gap:1.4rem;">
-          <article class="card card-soft">
-            <div class="label-row">
-              <div class="section-title">Focus areas</div>
-            </div>
-            <div class="tool-chips">
-              <span class="tool-chip">Food technology basics</span>
-              <span class="tool-chip">Quality awareness</span>
-              <span class="tool-chip">Customer service</span>
-              <span class="tool-chip">Team collaboration</span>
-            </div>
-          </article>
-
-          <article class="card card-soft">
-            <div class="label-row">
-              <div class="section-title">Soft skills</div>
-            </div>
-            <div class="tool-chips">
-              <span class="tool-chip">Adaptability</span>
-              <span class="tool-chip">Quick learning</span>
-              <span class="tool-chip">Time management</span>
-              <span class="tool-chip">Reliability</span>
-            </div>
-          </article>
-        </div>
-
-        <!-- Portfolio / links -->
-        <article class="card card-soft">
-          <div class="section-title">Portfolio & links</div>
-          <div class="tool-chips" style="margin-top:0.6rem;">
-            <!-- TODO: replace hrefs with your real links -->
-            <a class="link-pill" href="https://www.behance.net" target="_blank" rel="noreferrer">
-              Behance
-            </a class="link-pill" 
-            href="//www.linkedin.com/in/yug-desai-6b7248243"
-
-              LinkedIn
-            </a>
-            <a class="link-pill" href="mailto:desaiy275@gmail.com">
-              Email me
-            </a>
-          </div>
-
-          <div class="footer-row">
-            <span>Download as PDF with browser print (Ctrl/Cmd + P).</span>
-          </div>
-        </article>
-      </section>
+      </div>
     </div>
-  </main>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Get in touch</span>
+        <h2 class="section-title">Contact Me</h2>
+        <div class="section-underline"></div>
+        <p style="max-width:520px;margin:1rem auto 0;font-size:0.9rem;color:#6b7280;">
+          Interested in collaborating or have a question? Use the contact options below or send a short message through the form.
+        </p>
+      </div>
+
+      <div class="contact-layout">
+        <!-- Left: contact info -->
+        <div>
+          <h3 style="font-size:1.15rem;font-weight:600;margin-bottom:0.6rem;">Let's Connect</h3>
+          <p class="contact-blurb">
+            Feel free to reach out for collaborations, internships, working‑student roles, or simply to talk about food science, quality, and product development.
+          </p>
+
+          <a href="mailto:desaiy275@gmail.com" class="contact-method">
+            <div class="contact-method-icon" style="background:rgba(27,67,50,0.08);color:#1B4332;">
+              <i data-lucide="mail"></i>
+            </div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">work@yugdesai.in</div>
+            </div>
+          </a>
+
+          <a href="tel:+491234567890" class="contact-method">
+            <div class="contact-method-icon" style="background:rgba(116,168,147,0.12);color:#74A893;">
+              <i data-lucide="phone"></i>
+            </div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-value">+49 15510587217</div>
+            </div>
+          </a>
+
+          <div class="contact-method">
+            <div class="contact-method-icon" style="background:rgba(212,163,115,0.12);color:#D4A373;">
+              <i data-lucide="map-pin"></i>
+            </div>
+            <div>
+              <div class="contact-label">Location</div>
+              <div class="contact-value">Fulda, Hesse, Germany</div>
+            </div>
+          </div>
+
+          <div class="social-row">
+            <a href="https://www.linkedin.com/in/yug-desai-6b7248243/" target="_blank" class="social-icon" style="background:#0077B5;">
+              <i data-lucide="linkedin"></i>
+            </a>
+            <a href="mailto:desaiy275@gmail.com" class="social-icon" style="background:#1B4332;">
+              <i data-lucide="mail"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div>
+          <div class="form-card" id="contact-form-card">
+            <form id="contact-form">
+              <div class="form-row">
+                <div>
+                  <label>Your Name</label>
+                  <input type="text" name="name" placeholder="John Doe" required />
+                </div>
+                <div>
+                  <label>Email Address</label>
+                  <input type="email" name="email" placeholder="john@example.com" required />
+                </div>
+              </div>
+
+              <div style="margin-bottom:1rem;">
+                <label>Subject</label>
+                <input type="text" name="subject" placeholder="How can I help you?" required />
+              </div>
+
+              <div style="margin-bottom:1.25rem;">
+                <label>Message</label>
+                <textarea name="message" placeholder="Tell me about your project or inquiry..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn" id="submit-btn">
+                <span>Send Message</span>
+                <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-grid">
+          <div>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.9rem;">
+              <div class="logo-mark" style="background:#fff;color:#1B4332;">YD</div>
+              <span style="font-weight:600;font-size:1.1rem;">Yug Desai</span>
+            </div>
+            <p style="font-size:0.8rem;color:rgba(255,255,255,0.75);">
+              Food technologist passionate about creating safe, scalable, and smart food solutions that connect science with real‑world products.
+            </p>
+          </div>
+
+          <div style="display:flex;justify-content:center;align-items:center;">
+            <nav class="footer-nav">
+              <a href="#about">About</a>
+              <a href="#skills">Skills</a>
+              <a href="#education">Education</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
+
+          <div style="display:flex;justify-content:flex-end;align-items:center;">
+            <button class="back-top-btn" id="back-to-top">
+              <span>Back to top</span>
+              <i data-lucide="arrow-up" style="width:16px;height:16px;"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Yug Desai. All rights reserved.</p>
+        <p>Made with <span style="color:#f87171;">♥</span> for Food Science.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Activate Lucide icons
+    lucide.createIcons();
+
+    // Animate skill bars
+    document.querySelectorAll(".skill-bar-fill").forEach(function(bar) {
+      var level = bar.style.getPropertyValue("--level") || 0;
+      requestAnimationFrame(function() {
+        bar.style.width = level + "%";
+      });
+    });
+
+    // Back to top
+    document.getElementById("back-to-top").addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple fake form submit (no backend)
+    var form = document.getElementById("contact-form");
+    var submitBtn = document.getElementById("submit-btn");
+    var formCard = document.getElementById("contact-form-card");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="spinner"></div><span>Sending...</span>';
+
+      setTimeout(function() {
+        formCard.innerHTML =
+          '<div class="send-confirm">' +
+          '<div style="width:64px;height:64px;border-radius:999px;background:rgba(27,67,50,0.10);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">' +
+          '<i data-lucide="send" style="width:28px;height:28px;color:#1B4332;"></i>' +
+          '</div>' +
+          '<h4 style="font-size:1.1rem;font-weight:600;color:#111827;margin-bottom:0.4rem;">Message Sent!</h4>' +
+          '<p>Thank you for reaching out. I will get back to you soon.</p>' +
+          '</div>';
+        lucide.createIcons();
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
-
