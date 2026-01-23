@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yug Desai - CV App</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
@@ -338,6 +339,31 @@
                     </div>
                 </div>
 
+                <!-- Contact Form (Supabase Connected) -->
+                <div class="retro-card p-6">
+                    <h3 class="retro-font text-lg font-bold uppercase mb-4 flex items-center gap-2">
+                        <i class="fas fa-paper-plane"></i> Connect
+                    </h3>
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase retro-font mb-1">Name</label>
+                            <input type="text" id="formName" class="w-full bg-white border-2 border-[#2E2E2E] p-2 text-sm focus:outline-none focus:bg-[#F2D59C] transition-colors retro-font" placeholder="Your Name" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase retro-font mb-1">Organisation</label>
+                            <input type="text" id="formOrg" class="w-full bg-white border-2 border-[#2E2E2E] p-2 text-sm focus:outline-none focus:bg-[#F2D59C] transition-colors retro-font" placeholder="Company / Organization">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase retro-font mb-1">Contact Details</label>
+                            <input type="text" id="formContact" class="w-full bg-white border-2 border-[#2E2E2E] p-2 text-sm focus:outline-none focus:bg-[#F2D59C] transition-colors retro-font" placeholder="Email or Phone Number" required>
+                        </div>
+                        <button type="submit" class="w-full bg-[#2E2E2E] text-white retro-font font-bold uppercase py-3 hover:bg-[#F2D59C] hover:text-[#2E2E2E] border-2 border-[#2E2E2E] shadow-[4px_4px_0px_rgba(46,46,46,0.3)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                            Send Connection
+                        </button>
+                    </form>
+                    <div id="formStatus" class="mt-3 text-xs font-bold retro-font hidden text-center p-2 border border-[#2E2E2E] bg-white"></div>
+                </div>
+
             </div>
         </div>
 
@@ -353,6 +379,74 @@
     <div class="fixed bottom-4 right-4 bg-white border-2 border-[#2E2E2E] p-2 rounded shadow-lg no-print text-xs font-bold retro-font">
         CTRL + P to Print
     </div>
+
+    <!-- Supabase Logic -->
+    <script>
+        // --- SUPABASE CONFIGURATION ---
+        // TODO: Replace these placeholders with your actual Supabase URL and Anon Key
+        const SUPABASE_URL = 'https://wpixczikrgodgcmncelw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndwaXhjemlrcmdvZGdjbW5jZWx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcwOTM4MDUsImV4cCI6MjA4MjY2OTgwNX0.PtZ2CSCiecrW5o2RAPjRcPc-8MD5aZxHQWDiWu4erFM';
+        const TABLE_NAME = 'contacts'; // Ensure you have a table named 'contacts' in Supabase
+        // ------------------------------
+
+        // Check if Supabase SDK is loaded
+        if (typeof supabase !== 'undefined') {
+            const { createClient } = supabase;
+            const _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const statusDiv = document.getElementById('formStatus');
+                const submitBtn = e.target.querySelector('button');
+                const originalBtnText = submitBtn.textContent;
+
+                const name = document.getElementById('formName').value;
+                const org = document.getElementById('formOrg').value;
+                const contact = document.getElementById('formContact').value;
+
+                // Loading State
+                submitBtn.disabled = true;
+                submitBtn.textContent = "SENDING DATA...";
+                statusDiv.classList.add('hidden');
+
+                try {
+                    // Insert data into Supabase
+                    const { data, error } = await _supabase
+                        .from(TABLE_NAME)
+                        .insert([
+                            { name: name, organisation: org, contact_details: contact }
+                        ]);
+
+                    if (error) throw error;
+
+                    // Success State
+                    statusDiv.textContent = "SUCCESS: CONNECTION SAVED.";
+                    statusDiv.classList.remove('hidden', 'text-red-600');
+                    statusDiv.classList.add('text-green-700');
+                    e.target.reset();
+
+                } catch (error) {
+                    console.error('Supabase Error:', error);
+                    // Error State
+                    statusDiv.textContent = "ERROR: CHECK CONSOLE OR KEYS.";
+                    statusDiv.classList.remove('hidden', 'text-green-700');
+                    statusDiv.classList.add('text-red-600');
+                } finally {
+                    // Reset Button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                    
+                    // Hide status after 5 seconds
+                    setTimeout(() => {
+                        statusDiv.classList.add('hidden');
+                    }, 5000);
+                }
+            });
+        } else {
+            console.error('Supabase SDK not loaded.');
+        }
+    </script>
 
 </body>
 </html>
